@@ -30,6 +30,18 @@ interface axi_lite_if #(
     logic r_valid;
     logic r_ready;
 
+        modport master (
+        output aw_addr, aw_valid, w_data, w_strb, w_valid, b_ready,
+        output ar_addr, ar_valid, r_ready,
+        input  aw_ready, w_ready, b_resp, b_valid,
+        input  ar_ready, r_data, r_resp, r_valid
+    );
 
+    modport slave (
+        input  aw_addr, aw_valid, w_data, w_strb, w_valid, b_ready,
+        input  ar_addr, ar_valid, r_ready,
+        output aw_ready, w_ready, b_resp, b_valid,
+        output ar_ready, r_data, r_resp, r_valid
+    );
 
 endinterface

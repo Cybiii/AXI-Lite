@@ -1,0 +1,9 @@
+// each master transaction has a target address
+and decoder maps to that specific slave
+
+// detect when 2 mastrs want the same slave => round-robin
+
+// crossbar organization:   
+// masters have decoder
+// slaves have arbiters (who am i serving)
+
