@@ -16,7 +16,7 @@ module addr_decoder #(
 
     integer i;
 
-    always @* begin
+    always @(addr) begin
         slave_id = 0;
         valid = 1'b0;
         for (i = 0; i < M; i = i + 1) begin
