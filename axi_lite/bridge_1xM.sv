@@ -76,39 +76,44 @@ module bridge_1xM #(
         end
     end
 
-    // Request routing: master -> selected slave (or absorb if decerr)
-    always_comb begin
-        for (int i = 0; i < M; i++) begin
-            // AW
-            s_axi[i].aw_addr  = m_axi.aw_addr;
-            s_axi[i].aw_valid = (i == aw_slave_id && !aw_decerr) ? m_axi.aw_valid : 1'b0;
-            // W
-            s_axi[i].w_data   = m_axi.w_data;
-            s_axi[i].w_strb   = m_axi.w_strb;
-            s_axi[i].w_valid  = (i == aw_slave_id && !aw_decerr) ? m_axi.w_valid : 1'b0;
-            // B (slave drives b_ready as input to us; we drive b_ready to master from selected slave)
-            s_axi[i].b_ready  = (i == write_slave_sel && !write_decerr) ? m_axi.b_ready : 1'b0;
-            // AR
-            s_axi[i].ar_addr  = m_axi.ar_addr;
-            s_axi[i].ar_valid = (i == ar_slave_id && !ar_decerr) ? m_axi.ar_valid : 1'b0;
-            // R
-            s_axi[i].r_ready  = (i == read_slave_sel && !read_decerr) ? m_axi.r_ready : 1'b0;
+    // Packed arrays to avoid variable indexing of interface array (Xcelium limitation)
+    logic aw_ready_vec [M-1:0], w_ready_vec [M-1:0], ar_ready_vec [M-1:0];
+    logic [1:0] b_resp_vec [M-1:0], r_resp_vec [M-1:0];
+    logic b_valid_vec [M-1:0], r_valid_vec [M-1:0];
+    logic [DATA_WIDTH-1:0] r_data_vec [M-1:0];
+
+    genvar gi;
+    generate
+        for (gi = 0; gi < M; gi++) begin : gen_slave
+            assign aw_ready_vec[gi] = s_axi[gi].aw_ready;
+            assign w_ready_vec[gi]  = s_axi[gi].w_ready;
+            assign ar_ready_vec[gi] = s_axi[gi].ar_ready;
+            assign b_resp_vec[gi]   = s_axi[gi].b_resp;
+            assign b_valid_vec[gi] = s_axi[gi].b_valid;
+            assign r_data_vec[gi]  = s_axi[gi].r_data;
+            assign r_resp_vec[gi]  = s_axi[gi].r_resp;
+            assign r_valid_vec[gi] = s_axi[gi].r_valid;
+
+            assign s_axi[gi].aw_addr  = m_axi.aw_addr;
+            assign s_axi[gi].aw_valid = (aw_slave_id == gi && !aw_decerr) ? m_axi.aw_valid : 1'b0;
+            assign s_axi[gi].w_data   = m_axi.w_data;
+            assign s_axi[gi].w_strb   = m_axi.w_strb;
+            assign s_axi[gi].w_valid  = (aw_slave_id == gi && !aw_decerr) ? m_axi.w_valid : 1'b0;
+            assign s_axi[gi].b_ready  = (write_slave_sel == gi && !write_decerr) ? m_axi.b_ready : 1'b0;
+            assign s_axi[gi].ar_addr  = m_axi.ar_addr;
+            assign s_axi[gi].ar_valid = (ar_slave_id == gi && !ar_decerr) ? m_axi.ar_valid : 1'b0;
+            assign s_axi[gi].r_ready  = (read_slave_sel == gi && !read_decerr) ? m_axi.r_ready : 1'b0;
         end
-    end
+    endgenerate
 
-    // Master AW ready: from selected slave or 1 when decerr
-    assign m_axi.aw_ready = aw_decerr ? 1'b1 : s_axi[aw_slave_id].aw_ready;
-    assign m_axi.w_ready  = aw_decerr ? 1'b1 : s_axi[aw_slave_id].w_ready;
-
-    // Master AR ready
-    assign m_axi.ar_ready = ar_decerr ? 1'b1 : s_axi[ar_slave_id].ar_ready;
-
-    // Response routing: selected slave -> master (or DECERR)
-    assign m_axi.b_resp  = pending_B_decerr ? AXI_DECERR : s_axi[write_slave_sel].b_resp;
-    assign m_axi.b_valid = pending_B_decerr ? 1'b1     : s_axi[write_slave_sel].b_valid;
-
-    assign m_axi.r_data  = pending_R_decerr ? '0       : s_axi[read_slave_sel].r_data;
-    assign m_axi.r_resp  = pending_R_decerr ? AXI_DECERR : s_axi[read_slave_sel].r_resp;
-    assign m_axi.r_valid = pending_R_decerr ? 1'b1     : s_axi[read_slave_sel].r_valid;
+    // Master ready/resp: mux from packed arrays (variable index on logic OK)
+    assign m_axi.aw_ready = aw_decerr ? 1'b1 : aw_ready_vec[aw_slave_id];
+    assign m_axi.w_ready  = aw_decerr ? 1'b1 : w_ready_vec[aw_slave_id];
+    assign m_axi.ar_ready = ar_decerr ? 1'b1 : ar_ready_vec[ar_slave_id];
+    assign m_axi.b_resp   = pending_B_decerr ? AXI_DECERR : b_resp_vec[write_slave_sel];
+    assign m_axi.b_valid  = pending_B_decerr ? 1'b1      : b_valid_vec[write_slave_sel];
+    assign m_axi.r_data   = pending_R_decerr ? '0        : r_data_vec[read_slave_sel];
+    assign m_axi.r_resp   = pending_R_decerr ? AXI_DECERR : r_resp_vec[read_slave_sel];
+    assign m_axi.r_valid  = pending_R_decerr ? 1'b1      : r_valid_vec[read_slave_sel];
 
 endmodule
