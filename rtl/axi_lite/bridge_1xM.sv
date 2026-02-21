@@ -32,20 +32,47 @@ module bridge_1xM #(
     logic [SLAVE_ID_W-1:0] write_slave_sel, read_slave_sel;
     logic write_decerr, read_decerr;
 
+    // Track when AW and W complete with decerr (they can complete in any order)
+    logic aw_done_decerr, w_done_decerr;
+    logic pending_B_decerr, pending_R_decerr;
+
     always_ff @(posedge m_axi.clk or negedge m_axi.rst_n) begin
         if (!m_axi.rst_n) begin
             write_slave_sel <= '0;
             read_slave_sel  <= '0;
             write_decerr    <= 0;
             read_decerr     <= 0;
+            aw_done_decerr  <= 0;
+            w_done_decerr   <= 0;
+            pending_B_decerr <= 0;
+            pending_R_decerr <= 0;
         end else begin
+            // Write path
             if (m_axi.aw_valid && m_axi.aw_ready) begin
                 write_slave_sel <= aw_slave_id;
                 write_decerr    <= aw_decerr;
+                aw_done_decerr  <= aw_decerr;
             end
+            if (m_axi.w_valid && m_axi.w_ready) begin
+                w_done_decerr <= aw_decerr;  // same transaction
+            end
+            if (aw_done_decerr && w_done_decerr) begin
+                pending_B_decerr <= 1;
+            end
+            if (pending_B_decerr && m_axi.b_ready) begin
+                pending_B_decerr <= 0;
+                aw_done_decerr   <= 0;
+                w_done_decerr    <= 0;
+            end
+
+            // Read path
             if (m_axi.ar_valid && m_axi.ar_ready) begin
                 read_slave_sel <= ar_slave_id;
                 read_decerr    <= ar_decerr;
+                pending_R_decerr <= ar_decerr;
+            end
+            if (pending_R_decerr && m_axi.r_ready) begin
+                pending_R_decerr <= 0;
             end
         end
     end
