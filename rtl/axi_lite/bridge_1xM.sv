@@ -24,7 +24,6 @@ module bridge_1xM #(
 
     addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR(BASE_ADDR), .SIZE(SIZE))
         u_aw_dec (.addr(m_axi.aw_addr), .slave_id(aw_slave_id), .valid(), .decerr(aw_decerr));
-
     addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR(BASE_ADDR), .SIZE(SIZE))
         u_ar_dec (.addr(m_axi.ar_addr), .slave_id(ar_slave_id), .valid(), .decerr(ar_decerr));
 
