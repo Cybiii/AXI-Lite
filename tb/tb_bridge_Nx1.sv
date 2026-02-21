@@ -90,19 +90,19 @@ module tb_bridge_Nx1;
         end else $display("[PASS] M0 read OK");
 
         axi_read_master(1, 32'h4, rd_data, rd_resp);
-        if (rd_data != 32'hM1_0004 || rd_resp != AXI_OKAY) begin
+        if (rd_data != 32'hDEAD_0001 || rd_resp != AXI_OKAY) begin
             $display("[FAIL] M1 read: got 0x%08X resp=%b", rd_data, rd_resp);
             err_count++;
         end else $display("[PASS] M1 read OK");
 
         axi_read_master(2, 32'h8, rd_data, rd_resp);
-        if (rd_data != 32'hM2_0008 || rd_resp != AXI_OKAY) begin
+        if (rd_data != 32'hDEAD_0002 || rd_resp != AXI_OKAY) begin
             $display("[FAIL] M2 read: got 0x%08X resp=%b", rd_data, rd_resp);
             err_count++;
         end else $display("[PASS] M2 read OK");
 
         axi_read_master(3, 32'hC, rd_data, rd_resp);
-        if (rd_data != 32'hM3_000C || rd_resp != AXI_OKAY) begin
+        if (rd_data != 32'hDEAD_0003 || rd_resp != AXI_OKAY) begin
             $display("[FAIL] M3 read: got 0x%08X resp=%b", rd_data, rd_resp);
             err_count++;
         end else $display("[PASS] M3 read OK");
@@ -110,34 +110,34 @@ module tb_bridge_Nx1;
         // Contention test: all masters assert aw_valid at once
         $display("[TB] Contention test: all masters write simultaneously");
         fork
-            axi_write_master(0, 32'h10, 32'hCONTENT_0);
-            axi_write_master(1, 32'h14, 32'hCONTENT_1);
-            axi_write_master(2, 32'h18, 32'hCONTENT_2);
-            axi_write_master(3, 32'h1C, 32'hCONTENT_3);
+            axi_write_master(0, 32'h10, 32'hCE0_0000);
+            axi_write_master(1, 32'h14, 32'hCE0_0001);
+            axi_write_master(2, 32'h18, 32'hCE0_0002);
+            axi_write_master(3, 32'h1C, 32'hCE0_0003);
         join
         $display("[TB] All contention writes completed (round-robin served them)");
 
         // Verify contention writes
         axi_read_master(0, 32'h10, rd_data, rd_resp);
-        if (rd_data != 32'hCONTENT_0) begin
+        if (rd_data != 32'hCE0_0000) begin
             $display("[FAIL] Addr 0x10: got 0x%08X", rd_data);
             err_count++;
         end else $display("[PASS] Addr 0x10 OK");
 
         axi_read_master(0, 32'h14, rd_data, rd_resp);
-        if (rd_data != 32'hCONTENT_1) begin
+        if (rd_data != 32'hCE0_0001) begin
             $display("[FAIL] Addr 0x14: got 0x%08X", rd_data);
             err_count++;
         end else $display("[PASS] Addr 0x14 OK");
 
         axi_read_master(0, 32'h18, rd_data, rd_resp);
-        if (rd_data != 32'hCONTENT_2) begin
+        if (rd_data != 32'hCE0_0002) begin
             $display("[FAIL] Addr 0x18: got 0x%08X", rd_data);
             err_count++;
         end else $display("[PASS] Addr 0x18 OK");
 
         axi_read_master(0, 32'h1C, rd_data, rd_resp);
-        if (rd_data != 32'hCONTENT_3) begin
+        if (rd_data != 32'hCE0_0003) begin
             $display("[FAIL] Addr 0x1C: got 0x%08X", rd_data);
             err_count++;
         end else $display("[PASS] Addr 0x1C OK");
