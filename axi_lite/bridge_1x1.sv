@@ -1,5 +1,5 @@
 module bridge_1x1 (
-    axi_lite_if.master master
+    axi_lite_if.master master,
     axi_lite_if.slave slave
 );
     //AW
@@ -14,19 +14,19 @@ module bridge_1x1 (
     assign master.w_ready = slave.w_ready;
 
     // B
-    assign m_axi.b_resp   = s_axi.b_resp;
-    assign m_axi.b_valid  = s_axi.b_valid;
-    assign s_axi.b_ready  = m_axi.b_ready;
+    assign master.b_resp   = slave.b_resp;
+    assign master.b_valid  = slave.b_valid;
+    assign slave.b_ready   = master.b_ready;
     
     // AR
-    assign s_axi.ar_addr  = m_axi.ar_addr;
-    assign s_axi.ar_valid = m_axi.ar_valid;
-    assign m_axi.ar_ready = s_axi.ar_ready;
+    assign slave.ar_addr   = master.ar_addr;
+    assign slave.ar_valid  = master.ar_valid;
+    assign master.ar_ready = slave.ar_ready;
     
     // R
-    assign m_axi.r_data   = s_axi.r_data;
-    assign m_axi.r_resp   = s_axi.r_resp;
-    assign m_axi.r_valid  = s_axi.r_valid;
-    assign s_axi.r_ready  = m_axi.r_ready;
+    assign master.r_data   = slave.r_data;
+    assign master.r_resp   = slave.r_resp;
+    assign master.r_valid  = slave.r_valid;
+    assign slave.r_ready   = master.r_ready;
 
 endmodule

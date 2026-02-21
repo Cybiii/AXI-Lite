@@ -18,7 +18,7 @@ module rr_arbiter #(
     always_comb begin
         grant = '0;
         for (int offset = 1; offset <= N; offset++) begin
-            int idx = (last_grant + offset) % N;
+            automatic int idx = (last_grant + offset) % N;
             if (req[idx]) begin
                 grant[idx] = 1'b1;
                 break;
