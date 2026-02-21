@@ -1,0 +1,28 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-XLMODE
+./xcelium.d/run.lnx8664.25.09.d
+-RUNMODE
+-sv
+axi_lite/interface.sv
+axi_lite/address_decoder.sv
+axi_lite/rr_arbiter.sv
+axi_lite/bridge_1x1.sv
+axi_lite/bridge_1xM.sv
+axi_lite/bridge_Nx1.sv
+tb/axi_lite_mem_slave.sv
+tb/tb_bridge_1xM.sv
+tb/tb_bridge_Nx1.sv
+-CDSLIB
+./xcelium.d/run.lnx8664.25.09.d/cdsrun.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.25.09.d/hdlrun.var
+-no_analogsolver
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+./xcelium.d/run.lnx8664.25.09.d/xllibs
+-ALLOWUNBOUND
+-hastop

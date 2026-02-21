@@ -1,0 +1,226 @@
+xrun(64): 25.09-s002: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.09-s002: Started on Feb 21, 2026 at 02:56:14 PST
+xrun
+	-64bit
+	-sv
+	-f scripts/xcelium/files.f
+		axi_lite/interface.sv
+		axi_lite/address_decoder.sv
+		axi_lite/rr_arbiter.sv
+		axi_lite/bridge_1x1.sv
+		axi_lite/bridge_1xM.sv
+		axi_lite/bridge_Nx1.sv
+		tb/axi_lite_mem_slave.sv
+		tb/tb_bridge_1xM.sv
+		tb/tb_bridge_Nx1.sv
+	-top tb_bridge_1xM
+	-input scripts/xcelium/run_1xM.tcl
+file: axi_lite/rr_arbiter.sv
+            int idx = (last_grant + offset) % N;
+                    |
+xmvlog: *W,VARIST (axi_lite/rr_arbiter.sv,21|20): Local static variable with initializer requires 'static' keyword.
+            int idx = (last_grant + offset) % N;
+                                         |
+xmvlog: *E,AUTOSI (axi_lite/rr_arbiter.sv,21|41): automatic variable illegal in static variable initializer.
+	module worklib.rr_arbiter:sv
+		errors: 1, warnings: 1
+file: axi_lite/bridge_1x1.sv
+    axi_lite_if.slave slave
+              |
+xmvlog: *E,EXPCORP (axi_lite/bridge_1x1.sv,3|14): Expecting a ',' or ')' [A.1.4(IEEE-2001)].
+	module worklib.bridge_1x1:sv
+		errors: 1, warnings: 0
+file: tb/tb_bridge_1xM.sv
+        logic [DATA_WIDTH-1:0] rd_data;
+            |
+xmvlog: *E,BADDCL (tb/tb_bridge_1xM.sv,92|12): identify declaration while expecting a statement.
+        logic [DATA_WIDTH-1:0] rd_data;
+                         |
+xmvlog: *E,MISEXX (tb/tb_bridge_1xM.sv,92|25): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        logic [1:0] rd_resp;
+            |
+xmvlog: *E,BADDCL (tb/tb_bridge_1xM.sv,93|12): identify declaration while expecting a statement.
+	module worklib.tb_bridge_1xM:sv
+		errors: 3, warnings: 0
+file: tb/tb_bridge_Nx1.sv
+        axi_write_master(0, 32'h0, 32'hM0_0000);
+                                      |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,78|38): based number lacks value [2.5(IEEE)].
+        axi_write_master(0, 32'h0, 32'hM0_0000);
+                                             |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,78|45): expecting a right parenthesis (')') [10.2.2(IEEE)].
+        axi_write_master(0, 32'h0, 32'hM0_0000);
+                                              |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,78|46): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+        axi_write_master(1, 32'h4, 32'hM1_0004);
+                                      |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,79|38): based number lacks value [2.5(IEEE)].
+        axi_write_master(1, 32'h4, 32'hM1_0004);
+                                             |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,79|45): expecting a right parenthesis (')') [10.2.2(IEEE)].
+        axi_write_master(1, 32'h4, 32'hM1_0004);
+                                              |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,79|46): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+        axi_write_master(2, 32'h8, 32'hM2_0008);
+                                      |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,80|38): based number lacks value [2.5(IEEE)].
+        axi_write_master(2, 32'h8, 32'hM2_0008);
+                                             |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,80|45): expecting a right parenthesis (')') [10.2.2(IEEE)].
+        axi_write_master(2, 32'h8, 32'hM2_0008);
+                                              |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,80|46): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+        axi_write_master(3, 32'hC, 32'hM3_000C);
+                                      |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,81|38): based number lacks value [2.5(IEEE)].
+        axi_write_master(3, 32'hC, 32'hM3_000C);
+                                             |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,81|45): expecting a right parenthesis (')') [10.2.2(IEEE)].
+        axi_write_master(3, 32'hC, 32'hM3_000C);
+                                              |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,81|46): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+        logic [DATA_WIDTH-1:0] rd_data;
+            |
+xmvlog: *E,BADDCL (tb/tb_bridge_Nx1.sv,84|12): identify declaration while expecting a statement.
+        logic [DATA_WIDTH-1:0] rd_data;
+                         |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,84|25): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        logic [1:0] rd_resp;
+            |
+xmvlog: *E,BADDCL (tb/tb_bridge_Nx1.sv,85|12): identify declaration while expecting a statement.
+        if (rd_data != 32'hM0_0000 || rd_resp != AXI_OKAY) begin
+                          |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,87|26): based number lacks value [2.5(IEEE)].
+        if (rd_data != 32'hM0_0000 || rd_resp != AXI_OKAY) begin
+                                 |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,87|33): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hM0_0000 || rd_resp != AXI_OKAY) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,87|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM0_0000 || rd_resp != AXI_OKAY) begin
+                                               |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,87|47): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM0_0000 || rd_resp != AXI_OKAY) begin
+                                                         |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,87|57): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] M0 read OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,90|15): expecting a statement [9(IEEE)].
+        if (rd_data != 32'hM1_0004 || rd_resp != AXI_OKAY) begin
+                          |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,93|26): based number lacks value [2.5(IEEE)].
+        if (rd_data != 32'hM1_0004 || rd_resp != AXI_OKAY) begin
+                                 |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,93|33): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hM1_0004 || rd_resp != AXI_OKAY) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,93|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM1_0004 || rd_resp != AXI_OKAY) begin
+                                               |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,93|47): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM1_0004 || rd_resp != AXI_OKAY) begin
+                                                         |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,93|57): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] M1 read OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,96|15): expecting a statement [9(IEEE)].
+        if (rd_data != 32'hM2_0008 || rd_resp != AXI_OKAY) begin
+                          |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,99|26): based number lacks value [2.5(IEEE)].
+        if (rd_data != 32'hM2_0008 || rd_resp != AXI_OKAY) begin
+                                 |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,99|33): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hM2_0008 || rd_resp != AXI_OKAY) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,99|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM2_0008 || rd_resp != AXI_OKAY) begin
+                                               |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,99|47): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM2_0008 || rd_resp != AXI_OKAY) begin
+                                                         |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,99|57): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] M2 read OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,102|15): expecting a statement [9(IEEE)].
+        if (rd_data != 32'hM3_000C || rd_resp != AXI_OKAY) begin
+                          |
+xmvlog: *E,NULLNU (tb/tb_bridge_Nx1.sv,105|26): based number lacks value [2.5(IEEE)].
+        if (rd_data != 32'hM3_000C || rd_resp != AXI_OKAY) begin
+                                 |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,105|33): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hM3_000C || rd_resp != AXI_OKAY) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,105|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM3_000C || rd_resp != AXI_OKAY) begin
+                                               |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,105|47): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        if (rd_data != 32'hM3_000C || rd_resp != AXI_OKAY) begin
+                                                         |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,105|57): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] M3 read OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,108|15): expecting a statement [9(IEEE)].
+            axi_write_master(0, 32'h10, 32'hCONTENT_0);
+                                                    |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,113|52): expecting a right parenthesis (')') [10.2.2(IEEE)].
+            axi_write_master(0, 32'h10, 32'hCONTENT_0);
+                                                     |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,113|53): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+            axi_write_master(1, 32'h14, 32'hCONTENT_1);
+                                                    |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,114|52): expecting a right parenthesis (')') [10.2.2(IEEE)].
+            axi_write_master(1, 32'h14, 32'hCONTENT_1);
+                                                     |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,114|53): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+            axi_write_master(2, 32'h18, 32'hCONTENT_2);
+                                                    |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,115|52): expecting a right parenthesis (')') [10.2.2(IEEE)].
+            axi_write_master(2, 32'h18, 32'hCONTENT_2);
+                                                     |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,115|53): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+            axi_write_master(3, 32'h1C, 32'hCONTENT_3);
+                                                    |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,116|52): expecting a right parenthesis (')') [10.2.2(IEEE)].
+            axi_write_master(3, 32'h1C, 32'hCONTENT_3);
+                                                     |
+xmvlog: *E,EXPSMC (tb/tb_bridge_Nx1.sv,116|53): expecting a semicolon (';') [10.2.2][10.2(IEEE)].
+        if (rd_data != 32'hCONTENT_0) begin
+                                   |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,122|35): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hCONTENT_0) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,122|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] Addr 0x10 OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,125|15): expecting a statement [9(IEEE)].
+        if (rd_data != 32'hCONTENT_1) begin
+                                   |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,128|35): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hCONTENT_1) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,128|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] Addr 0x14 OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,131|15): expecting a statement [9(IEEE)].
+        if (rd_data != 32'hCONTENT_2) begin
+                                   |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,134|35): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hCONTENT_2) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,134|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] Addr 0x18 OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,137|15): expecting a statement [9(IEEE)].
+        if (rd_data != 32'hCONTENT_3) begin
+                                   |
+xmvlog: *E,EXPRPA (tb/tb_bridge_Nx1.sv,140|35): expecting a right parenthesis (')') [9.4(IEEE)].
+        if (rd_data != 32'hCONTENT_3) begin
+                                    |
+xmvlog: *E,MISEXX (tb/tb_bridge_Nx1.sv,140|36): expecting an '=' or '<=' sign in an assignment [9.2(IEEE)].
+        end else $display("[PASS] Addr 0x1C OK");
+               |
+xmvlog: *E,NOTSTT (tb/tb_bridge_Nx1.sv,143|15): expecting a statement [9(IEEE)].
+	module worklib.tb_bridge_Nx1:sv
+		errors: 59, warnings: 0
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun(64)	25.09-s002: Exiting on Feb 21, 2026 at 02:56:15 PST  (total: 00:00:01)

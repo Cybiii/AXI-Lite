@@ -1,0 +1,12 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-64bit
+-sv
+-f
+scripts/xcelium/files.f
+-top
+tb_bridge_1xM
+-input
+scripts/xcelium/run_1xM.tcl
