@@ -1,3 +1,4 @@
+// input a address => outputs slave id, valid, and error
 module addr_decoder #(
     parameter int N_SLAVES = 4,
     parameter int ADDR_WIDTH = 32,
