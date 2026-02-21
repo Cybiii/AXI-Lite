@@ -4,6 +4,8 @@
 //
 -64bit
 -sv
+-timescale
+1ns/1ps
 -f
 scripts/xcelium/files.f
 -top

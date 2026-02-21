@@ -1,8 +1,9 @@
 xrun(64): 25.09-s002: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	25.09-s002: Started on Feb 21, 2026 at 03:01:24 PST
+TOOL:	xrun(64)	25.09-s002: Started on Feb 21, 2026 at 03:02:35 PST
 xrun
 	-64bit
 	-sv
+	-timescale 1ns/1ps
 	-f scripts/xcelium/files.f
 		axi_lite/interface.sv
 		axi_lite/address_decoder.sv
@@ -15,22 +16,40 @@ xrun
 		tb/tb_bridge_Nx1.sv
 	-top tb_bridge_1xM
 	-input scripts/xcelium/run_1xM.tcl
-Recompiling... reason: file './axi_lite/bridge_1xM.sv' is newer than expected.
-	expected: Sat Feb 21 02:53:48 2026
-	actual:   Sat Feb 21 03:01:22 2026
-file: axi_lite/bridge_1xM.sv
-	module worklib.bridge_1xM:sv
-		errors: 0, warnings: 0
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
 		worklib.tb_bridge_1xM:sv (module)
-	Modules w/wo timescales:
-		timescale of worklib.tb_bridge_1xM:sv = 1ns/1ps
-		timescale of worklib.bridge_1xM:sv = NOTSET
-		timescale of worklib.axi_lite_mem_slave:sv = NOTSET
-		timescale of worklib.axi_lite_if:sv = NOTSET
-		timescale of worklib.addr_decoder:sv = NOTSET
-xmelab: *F,CUMSTS: Timescale directive missing on one or more modules.
-xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 2), exiting.
-TOOL:	xrun(64)	25.09-s002: Exiting on Feb 21, 2026 at 03:01:24 PST  (total: 00:00:00)
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.axi_lite_mem_slave:sv <0x3c9b52a5>
+			streams:  16, words: 10549
+		worklib.addr_decoder:sv <0x396f6b2f>
+			streams:   1, words:   623
+		worklib.tb_bridge_1xM:sv <0x6aa481cb>
+			streams:  12, words: 24570
+		worklib.bridge_1xM:sv <0x640f5186>
+			streams:  39, words: 13667
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 8       4
+		Interfaces:              5       1
+		Registers:             159      60
+		Scalar wires:           65       -
+		Vectored wires:         37       -
+		Always blocks:          16       6
+		Initial blocks:          2       2
+		Cont. assignments:      80      28
+		Pseudo assignments:      7       -
+		Process Clocks:         13       2
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.tb_bridge_1xM:sv
+Loading snapshot worklib.tb_bridge_1xM:sv .................... Done
+xcelium> source /share/instsww/cadence/XCELIUM2509/tools/xcelium/files/xmsimrc
+xcelium> run 5us
+[TB] === bridge_1xM Test ===
+Ran until 5 US + 0
+xcelium> exit
+TOOL:	xrun(64)	25.09-s002: Exiting on Feb 21, 2026 at 03:02:36 PST  (total: 00:00:01)

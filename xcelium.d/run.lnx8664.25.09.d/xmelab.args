@@ -2,6 +2,8 @@
 // File created by:  xrun
 // Do not modify this file
 //
+-timescale
+1ns/1ps
 -no_analogsolver
 -MESSAGES
 tb_bridge_1xM
