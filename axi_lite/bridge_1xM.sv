@@ -18,9 +18,9 @@ module bridge_1xM #(
     logic [SLAVE_ID_W-1:0] aw_slave_id, ar_slave_id;
     logic aw_decerr, ar_decerr;
 
-    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR_PACKED(BASE_ADDR_PACKED), .SIZE_PACKED(SIZE_PACKED))
+    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .SLAVE_ID_W(SLAVE_ID_W), .BASE_ADDR_PACKED(BASE_ADDR_PACKED), .SIZE_PACKED(SIZE_PACKED))
         u_aw_dec (.addr(m_axi.aw_addr), .slave_id(aw_slave_id), .valid(), .decerr(aw_decerr));
-    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR_PACKED(BASE_ADDR_PACKED), .SIZE_PACKED(SIZE_PACKED))
+    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .SLAVE_ID_W(SLAVE_ID_W), .BASE_ADDR_PACKED(BASE_ADDR_PACKED), .SIZE_PACKED(SIZE_PACKED))
         u_ar_dec (.addr(m_axi.ar_addr), .slave_id(ar_slave_id), .valid(), .decerr(ar_decerr));
 
     // Latch slave selection when address handshake completes (for B/R routing)
