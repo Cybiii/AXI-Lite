@@ -4,12 +4,8 @@ module bridge_1xM #(
     parameter int M = 4,
     parameter int ADDR_WIDTH = 32,
     parameter int DATA_WIDTH = 32,
-    parameter logic [ADDR_WIDTH-1:0] BASE_ADDR [M] = '{
-        32'h0000_0000, 32'h0000_1000, 32'h0000_2000, 32'h0000_3000
-    },
-    parameter logic [ADDR_WIDTH-1:0] SIZE [M] = '{
-        32'h1000, 32'h1000, 32'h1000, 32'h1000
-    },
+    parameter [ADDR_WIDTH*M-1:0] BASE_ADDR_PACKED = {32'h0000_3000, 32'h0000_2000, 32'h0000_1000, 32'h0000_0000},
+    parameter [ADDR_WIDTH*M-1:0] SIZE_PACKED     = {32'h1000, 32'h1000, 32'h1000, 32'h1000},
     localparam int SLAVE_ID_W = (M > 1) ? $clog2(M) : 1
 ) (
     axi_lite_if.master m_axi,
@@ -22,9 +18,9 @@ module bridge_1xM #(
     logic [SLAVE_ID_W-1:0] aw_slave_id, ar_slave_id;
     logic aw_decerr, ar_decerr;
 
-    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR(BASE_ADDR), .SIZE(SIZE))
+    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR_PACKED(BASE_ADDR_PACKED), .SIZE_PACKED(SIZE_PACKED))
         u_aw_dec (.addr(m_axi.aw_addr), .slave_id(aw_slave_id), .valid(), .decerr(aw_decerr));
-    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR(BASE_ADDR), .SIZE(SIZE))
+    addr_decoder #(.M(M), .ADDR_WIDTH(ADDR_WIDTH), .BASE_ADDR_PACKED(BASE_ADDR_PACKED), .SIZE_PACKED(SIZE_PACKED))
         u_ar_dec (.addr(m_axi.ar_addr), .slave_id(ar_slave_id), .valid(), .decerr(ar_decerr));
 
     // Latch slave selection when address handshake completes (for B/R routing)
