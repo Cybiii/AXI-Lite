@@ -2,3 +2,5 @@
 s1(21Feb2026:02:55:30):  xrun -64bit -sv -f scripts/xcelium/files.f -top tb_bridge_1xM -input scripts/xcelium/run_1xM.tcl 
 #e2(21Feb2026:02:56:15): source ./xcelium.d/env.d/env.history.21Feb2026_02_56_15
 s2(21Feb2026:02:56:15):  xrun -64bit -sv -f scripts/xcelium/files.f -top tb_bridge_1xM -input scripts/xcelium/run_1xM.tcl 
+#e3(21Feb2026:02:59:28): source ./xcelium.d/env.d/env.history.21Feb2026_02_59_28
+s3(21Feb2026:02:59:28):  xrun -64bit -sv -f scripts/xcelium/files.f -top tb_bridge_1xM -input scripts/xcelium/run_1xM.tcl 

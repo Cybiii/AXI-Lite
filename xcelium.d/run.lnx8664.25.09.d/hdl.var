@@ -1,0 +1,6 @@
+define XMSIMRC	( /share/instsww/cadence/XCELIUM2509/tools/xcelium/files/xmsimrc, ~/.xmsimrc )
+define AMSRC	( /share/instsww/cadence/XCELIUM2509/tools/xcelium/files/amsrc, ~/.amsrc )
+include ./hdlrun.var
+define SNAPSHOT worklib.bridge_1x1:sv
+DEFINE RUNMODEDEFAULT 1
+DEFINE LIB_MAP ( + => worklib )
