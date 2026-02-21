@@ -1,28 +1,37 @@
-module addr_to_slave #(
-    parameter N = 4,
-    parameter ADDR_WIDTH = 32,
-    parameter BASE_ADDR = 0,
-    parameter SIZE = 4096;
+module addr_decoder #(
+    parameter int N_SLAVES = 4,
+    parameter int ADDR_WIDTH = 32,
+    parameter logic [ADDR_WIDTH-1:0] BASE_ADDR [4] = '{
+        32'h0000_0000,
+        32'h0000_1000,
+        32'h0000_2000,
+        32'h0000_3000
+    },
+    parameter logic [ADDR_WIDTH-1:0] SIZE [4] = '{
+        32'h1000,  // 4 KB each
+        32'h1000,
+        32'h1000,
+        32'h1000
+    },
+    localparam int SLAVE_ID_W = (N_SLAVES > 1) ? $clog2(N_SLAVES) : 1
 ) (
-    
+    input  logic [ADDR_WIDTH-1:0] addr,
+    output logic [SLAVE_ID_W-1:0] slave_id,
+    output logic valid,
+    output logic decerr
 );
-    logic slave_id = 0;
-    logic valid = 0;
-    logic decerr = 1;
-    genvar i;
 
-    for (i = 0; i < N - 1; i++) begin
-        if(addr >= BASE_ADDR[i] && addr < BASE_ADDR[i] + SIZE[i]) begin
-            slave_id = i
-            valid = i
+    always_comb begin
+        slave_id = '0;
+        valid = 1'b0;
+        for (int i = 0; i < N_SLAVES; i++) begin
+            if (addr >= BASE_ADDR[i] && addr < (BASE_ADDR[i] + SIZE[i])) begin
+                slave_id = i;
+                valid = 1'b1;
+                break;
+            end
         end
-        if(valid == 0) begin
-            decerr = 1;
-        end
-
-    
+        decerr = !valid;
     end
-
-
 
 endmodule
