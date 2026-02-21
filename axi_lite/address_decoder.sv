@@ -24,7 +24,7 @@ module addr_decoder #(
 );
 
     always_comb begin
-        slave_id = '0;
+        slave_id = 0;
         valid = 1'b0;
         for (int i = 0; i < M; i++) begin
             if (addr >= BASE_ADDR[i] && addr < (BASE_ADDR[i] + SIZE[i])) begin
