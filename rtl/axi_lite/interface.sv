@@ -10,12 +10,12 @@ interface axi_lite_if #(
 
     // Write data channel
     logic [DATA_WIDTH-1:0]   w_data;
-    logic [DATA_WIDTH/8-1:0] w_strb;
+    logic [DATA_WIDTH/8-1:0] w_strb; // valid bytes e.g w_strb[0] is byte 0, w_strb[1] is byte 1, etc...
     logic w_valid;
     logic w_ready;
 
     // Write response channel
-    logic [1:0] b_resp;
+    logic [1:0] b_resp; // codes 2'b00 OKAY, 2'b01 EXCLUSIVEOKAY, 2'b10 ERROR, 2'b11 DECODE-ERROR
     logic b_valid;
     logic b_ready;
 

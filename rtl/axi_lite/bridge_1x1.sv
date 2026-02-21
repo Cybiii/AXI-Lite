@@ -1,4 +1,4 @@
-module bridge_1xM (
+module bridge_1x1 (
     axi_lite_if.master master
     axi_lite_if.slave slave
 );
