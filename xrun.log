@@ -1,5 +1,5 @@
 xrun(64): 25.09-s002: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	25.09-s002: Started on Feb 21, 2026 at 02:59:28 PST
+TOOL:	xrun(64)	25.09-s002: Started on Feb 21, 2026 at 03:01:24 PST
 xrun
 	-64bit
 	-sv
@@ -15,72 +15,22 @@ xrun
 		tb/tb_bridge_Nx1.sv
 	-top tb_bridge_1xM
 	-input scripts/xcelium/run_1xM.tcl
-file: axi_lite/rr_arbiter.sv
-	module worklib.rr_arbiter:sv
-		errors: 0, warnings: 0
-file: axi_lite/bridge_1x1.sv
-	module worklib.bridge_1x1:sv
-		errors: 0, warnings: 0
-file: tb/tb_bridge_1xM.sv
-	module worklib.tb_bridge_1xM:sv
-		errors: 0, warnings: 0
-file: tb/tb_bridge_Nx1.sv
-	module worklib.tb_bridge_Nx1:sv
+Recompiling... reason: file './axi_lite/bridge_1xM.sv' is newer than expected.
+	expected: Sat Feb 21 02:53:48 2026
+	actual:   Sat Feb 21 03:01:22 2026
+file: axi_lite/bridge_1xM.sv
+	module worklib.bridge_1xM:sv
 		errors: 0, warnings: 0
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
 		worklib.tb_bridge_1xM:sv (module)
-            s_axi[i].aw_addr  = m_axi.aw_addr;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,83|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].aw_valid = (i == aw_slave_id && !aw_decerr) ? m_axi.aw_valid : 1'b0;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,84|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].w_data   = m_axi.w_data;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,86|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].w_strb   = m_axi.w_strb;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,87|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].w_valid  = (i == aw_slave_id && !aw_decerr) ? m_axi.w_valid : 1'b0;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,88|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].b_ready  = (i == write_slave_sel && !write_decerr) ? m_axi.b_ready : 1'b0;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,90|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].ar_addr  = m_axi.ar_addr;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,92|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].ar_valid = (i == ar_slave_id && !ar_decerr) ? m_axi.ar_valid : 1'b0;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,93|18): Illegal operand for constant expression [4(IEEE)].
-            s_axi[i].r_ready  = (i == read_slave_sel && !read_decerr) ? m_axi.r_ready : 1'b0;
-                  |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,95|18): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.aw_ready = aw_decerr ? 1'b1 : s_axi[aw_slave_id].aw_ready;
-                                                               |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,100|63): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.w_ready  = aw_decerr ? 1'b1 : s_axi[aw_slave_id].w_ready;
-                                                               |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,101|63): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.ar_ready = ar_decerr ? 1'b1 : s_axi[ar_slave_id].ar_ready;
-                                                               |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,104|63): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.b_resp  = pending_B_decerr ? AXI_DECERR : s_axi[write_slave_sel].b_resp;
-                                                                               |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,107|79): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.b_valid = pending_B_decerr ? 1'b1     : s_axi[write_slave_sel].b_valid;
-                                                                             |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,108|77): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.r_data  = pending_R_decerr ? '0       : s_axi[read_slave_sel].r_data;
-                                                                            |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,110|76): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.r_resp  = pending_R_decerr ? AXI_DECERR : s_axi[read_slave_sel].r_resp;
-                                                                              |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,111|78): Illegal operand for constant expression [4(IEEE)].
-    assign m_axi.r_valid = pending_R_decerr ? 1'b1     : s_axi[read_slave_sel].r_valid;
-                                                                            |
-xmelab: *E,NOTPAR (./axi_lite/bridge_1xM.sv,112|76): Illegal operand for constant expression [4(IEEE)].
-xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 1), exiting.
-TOOL:	xrun(64)	25.09-s002: Exiting on Feb 21, 2026 at 02:59:28 PST  (total: 00:00:00)
+	Modules w/wo timescales:
+		timescale of worklib.tb_bridge_1xM:sv = 1ns/1ps
+		timescale of worklib.bridge_1xM:sv = NOTSET
+		timescale of worklib.axi_lite_mem_slave:sv = NOTSET
+		timescale of worklib.axi_lite_if:sv = NOTSET
+		timescale of worklib.addr_decoder:sv = NOTSET
+xmelab: *F,CUMSTS: Timescale directive missing on one or more modules.
+xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 2), exiting.
+TOOL:	xrun(64)	25.09-s002: Exiting on Feb 21, 2026 at 03:01:24 PST  (total: 00:00:00)
