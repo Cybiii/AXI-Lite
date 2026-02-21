@@ -54,7 +54,7 @@ module bridge_1xM #(
                 aw_done_decerr  <= aw_decerr;
             end
             if (m_axi.w_valid && m_axi.w_ready) begin
-                w_done_decerr <= aw_decerr;  // same transaction
+                w_done_decerr <= aw_decerr;  // W for same transaction as AW
             end
             if (aw_done_decerr && w_done_decerr) begin
                 pending_B_decerr <= 1;
@@ -105,11 +105,11 @@ module bridge_1xM #(
     assign m_axi.ar_ready = ar_decerr ? 1'b1 : s_axi[ar_slave_id].ar_ready;
 
     // Response routing: selected slave -> master (or DECERR)
-    assign m_axi.b_resp  = write_decerr ? AXI_DECERR : s_axi[write_slave_sel].b_resp;
-    assign m_axi.b_valid = write_decerr ? 1'b1     : s_axi[write_slave_sel].b_valid;
+    assign m_axi.b_resp  = pending_B_decerr ? AXI_DECERR : s_axi[write_slave_sel].b_resp;
+    assign m_axi.b_valid = pending_B_decerr ? 1'b1     : s_axi[write_slave_sel].b_valid;
 
-    assign m_axi.r_data  = read_decerr ? '0       : s_axi[read_slave_sel].r_data;
-    assign m_axi.r_resp  = read_decerr ? AXI_DECERR : s_axi[read_slave_sel].r_resp;
-    assign m_axi.r_valid = read_decerr ? 1'b1     : s_axi[read_slave_sel].r_valid;
+    assign m_axi.r_data  = pending_R_decerr ? '0       : s_axi[read_slave_sel].r_data;
+    assign m_axi.r_resp  = pending_R_decerr ? AXI_DECERR : s_axi[read_slave_sel].r_resp;
+    assign m_axi.r_valid = pending_R_decerr ? 1'b1     : s_axi[read_slave_sel].r_valid;
 
 endmodule
