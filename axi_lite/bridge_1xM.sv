@@ -5,13 +5,13 @@ module bridge_1xM #(
     parameter int ADDR_WIDTH = 32,
     parameter int DATA_WIDTH = 32,
     parameter [ADDR_WIDTH*M-1:0] BASE_ADDR_PACKED = {32'h0000_3000, 32'h0000_2000, 32'h0000_1000, 32'h0000_0000},
-    parameter [ADDR_WIDTH*M-1:0] SIZE_PACKED     = {32'h1000, 32'h1000, 32'h1000, 32'h1000},
-    localparam int SLAVE_ID_W = (M > 1) ? $clog2(M) : 1
+    parameter [ADDR_WIDTH*M-1:0] SIZE_PACKED     = {32'h1000, 32'h1000, 32'h1000, 32'h1000}
 ) (
     axi_lite_if.master m_axi,
     axi_lite_if.slave  s_axi [M-1:0]
 );
 
+    localparam int SLAVE_ID_W = (M > 1) ? $clog2(M) : 1;
     localparam logic [1:0] AXI_DECERR = 2'b11;
 
     // Decode addresses (combinational)

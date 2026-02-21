@@ -3,9 +3,9 @@
 module addr_decoder #(
     parameter int M = 4,
     parameter int ADDR_WIDTH = 32,
+    parameter int SLAVE_ID_W = (M > 1) ? $clog2(M) : 1,
     parameter [ADDR_WIDTH*M-1:0] BASE_ADDR_PACKED = {32'h0000_3000, 32'h0000_2000, 32'h0000_1000, 32'h0000_0000},
-    parameter [ADDR_WIDTH*M-1:0] SIZE_PACKED     = {32'h1000, 32'h1000, 32'h1000, 32'h1000},
-    localparam int SLAVE_ID_W = (M > 1) ? $clog2(M) : 1
+    parameter [ADDR_WIDTH*M-1:0] SIZE_PACKED     = {32'h1000, 32'h1000, 32'h1000, 32'h1000}
 ) (
     input  logic [ADDR_WIDTH-1:0] addr,
     output logic [SLAVE_ID_W-1:0] slave_id,
