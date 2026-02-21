@@ -26,6 +26,8 @@ module tb_bridge_Nx1;
 
     // Test
     int err_count;
+    logic [DATA_WIDTH-1:0] rd_data;
+    logic [1:0] rd_resp;
     localparam logic [1:0] AXI_OKAY = 2'b00;
 
     task automatic axi_write_master(int mid, logic [ADDR_WIDTH-1:0] addr, logic [DATA_WIDTH-1:0] data);
@@ -75,16 +77,14 @@ module tb_bridge_Nx1;
         $display("[TB] === bridge_Nx1 Test ===");
 
         // Sequential writes from each master (no contention)
-        axi_write_master(0, 32'h0, 32'hM0_0000);
-        axi_write_master(1, 32'h4, 32'hM1_0004);
-        axi_write_master(2, 32'h8, 32'hM2_0008);
-        axi_write_master(3, 32'hC, 32'hM3_000C);
+        axi_write_master(0, 32'h0, 32'hDEAD_0000);
+        axi_write_master(1, 32'h4, 32'hDEAD_0001);
+        axi_write_master(2, 32'h8, 32'hDEAD_0002);
+        axi_write_master(3, 32'hC, 32'hDEAD_0003);
 
         // Read back
-        logic [DATA_WIDTH-1:0] rd_data;
-        logic [1:0] rd_resp;
         axi_read_master(0, 32'h0, rd_data, rd_resp);
-        if (rd_data != 32'hM0_0000 || rd_resp != AXI_OKAY) begin
+        if (rd_data != 32'hDEAD_0000 || rd_resp != AXI_OKAY) begin
             $display("[FAIL] M0 read: got 0x%08X resp=%b", rd_data, rd_resp);
             err_count++;
         end else $display("[PASS] M0 read OK");

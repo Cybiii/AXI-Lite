@@ -69,6 +69,9 @@ module tb_bridge_1xM;
         @(posedge clk);
     endtask
 
+    logic [DATA_WIDTH-1:0] rd_data;
+    logic [1:0] rd_resp;
+
     initial begin
         rst_n = 0;
         m_axi.aw_addr = 0; m_axi.aw_valid = 0;
@@ -89,8 +92,6 @@ module tb_bridge_1xM;
         axi_write(32'h0000_3000, 32'hDEAD_3000);  // Slave 3
 
         // Read back and verify
-        logic [DATA_WIDTH-1:0] rd_data;
-        logic [1:0] rd_resp;
         axi_read(32'h0000_0000, rd_data, rd_resp);
         if (rd_data != 32'hDEAD_0000 || rd_resp != AXI_OKAY) begin
             $display("[FAIL] Slave 0: got 0x%08X resp=%b, expected 0xDEAD0000 OKAY", rd_data, rd_resp);

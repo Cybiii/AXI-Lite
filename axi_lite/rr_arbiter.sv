@@ -16,9 +16,10 @@ module rr_arbiter #(
 
     // Round-robin: priority order starting from (last_grant + 1) mod N
     always_comb begin
+        int idx;
         grant = '0;
         for (int offset = 1; offset <= N; offset++) begin
-            automatic int idx = (last_grant + offset) % N;
+            idx = (last_grant + offset) % N;
             if (req[idx]) begin
                 grant[idx] = 1'b1;
                 break;
