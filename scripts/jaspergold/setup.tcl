@@ -14,3 +14,11 @@ read_file -type systemverilog formal/axi_lite_props.sv
 read_file -type systemverilog scripts/jaspergold/bind_bridge_1xM.sv
 
 elaborate
+
+# Clock and reset for proof (required; bridge_1xM master port)
+clock m_axi.clk
+reset -expression "!m_axi.rst_n"
+
+# Run formal proof on all assertions (after elaborate)
+# prove -all
+# Or in GUI: Proof Setup -> Run Proof / Prove All
