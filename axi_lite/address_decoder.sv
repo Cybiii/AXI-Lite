@@ -1,6 +1,6 @@
 // input a address => outputs slave id, valid, and error
 // M = number of slaves (N×M convention)
-// Verilog-95 compatible for JasperGold (explicit sensitivity, no variable part-select)
+// Verilog-95 only: no generate/genvar, constant part-selects (JasperGold Analyze RTL)
 module addr_decoder #(
     parameter M = 4,
     parameter ADDR_WIDTH = 32,
@@ -14,27 +14,28 @@ module addr_decoder #(
     output reg decerr
 );
 
-    // Per-slave range match (constant part-select in generate => Verilog-95 ok)
-    wire [M-1:0] match;
-    genvar g;
-    generate
-        for (g = 0; g < M; g = g + 1) begin : gen_slave
-            wire [ADDR_WIDTH-1:0] base_g = BASE_ADDR_PACKED[g*ADDR_WIDTH + ADDR_WIDTH - 1 : g*ADDR_WIDTH];
-            wire [ADDR_WIDTH-1:0] size_g = SIZE_PACKED[g*ADDR_WIDTH + ADDR_WIDTH - 1 : g*ADDR_WIDTH];
-            assign match[g] = (addr >= base_g) && (addr < base_g + size_g);
-        end
-    endgenerate
+    // Constant part-selects only (Verilog-95); M=4
+    wire [ADDR_WIDTH-1:0] base0 = BASE_ADDR_PACKED[ 31:  0];
+    wire [ADDR_WIDTH-1:0] base1 = BASE_ADDR_PACKED[ 63: 32];
+    wire [ADDR_WIDTH-1:0] base2 = BASE_ADDR_PACKED[ 95: 64];
+    wire [ADDR_WIDTH-1:0] base3 = BASE_ADDR_PACKED[127: 96];
+    wire [ADDR_WIDTH-1:0] size0 = SIZE_PACKED[ 31:  0];
+    wire [ADDR_WIDTH-1:0] size1 = SIZE_PACKED[ 63: 32];
+    wire [ADDR_WIDTH-1:0] size2 = SIZE_PACKED[ 95: 64];
+    wire [ADDR_WIDTH-1:0] size3 = SIZE_PACKED[127: 96];
 
-    integer i;
+    wire match0 = (addr >= base0) && (addr < base0 + size0);
+    wire match1 = (addr >= base1) && (addr < base1 + size1);
+    wire match2 = (addr >= base2) && (addr < base2 + size2);
+    wire match3 = (addr >= base3) && (addr < base3 + size3);
+
     always @(addr) begin
         slave_id = 0;
         valid = 1'b0;
-        for (i = 0; i < M; i = i + 1) begin
-            if (!valid && match[i]) begin
-                slave_id = i;
-                valid = 1'b1;
-            end
-        end
+        if (match0) begin valid = 1'b1; slave_id = 0; end
+        else if (match1) begin valid = 1'b1; slave_id = 1; end
+        else if (match2) begin valid = 1'b1; slave_id = 2; end
+        else if (match3) begin valid = 1'b1; slave_id = 3; end
         decerr = !valid;
     end
 

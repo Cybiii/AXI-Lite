@@ -5,10 +5,10 @@
 # version   : 2024.12p002 64 bits
 # build date: 2025.02.26 14:36:14 UTC
 # ----------------------------------------
-# started   : 2026-02-21 04:45:39 PST
+# started   : 2026-02-21 04:48:49 PST
 # hostname  : eda-1.EECS.Berkeley.EDU.(none)
-# pid       : 637610
-# arguments : '-label' 'session_0' '-console' '//127.0.0.1:40753' '-style' 'windows' '-data' 'AAAAXHicY2RgYLCp////PwMYMD6A0Aw2jAyoAMRnQhUJbEChGRhYUbUAAL9fBoQ=' '-proj' '/scratch/cs199-akc/NoC-experiments/jgproject/sessionLogs/session_0' '-init' '-hidden' '/scratch/cs199-akc/NoC-experiments/jgproject/.tmp/.initCmds.tcl'
+# pid       : 643395
+# arguments : '-label' 'session_0' '-console' '//127.0.0.1:40925' '-style' 'windows' '-data' 'AAAAXHicY2RgYLCp////PwMYMD6A0Aw2jAyoAMRnQhUJbEChGRhYUbUAAL9fBoQ=' '-proj' '/scratch/cs199-akc/NoC-experiments/jgproject/sessionLogs/session_0' '-init' '-hidden' '/scratch/cs199-akc/NoC-experiments/jgproject/.tmp/.initCmds.tcl'
 
 Any disclosure about the Cadence Design Systems software or its use
 model to any third party violates the written Non-Disclosure Agreement
@@ -49,58 +49,14 @@ INFO: successfully checked out licenses "jasper_interactive" and "jasper_fao".
 INFO: reading configuration file "/home/aa/users/cs199-akc/.config/cadence/jasper.conf".
 % analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1xM.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/fifo.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/rr_arbiter.sv} ; 
 [-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv'
-[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(16): syntax error near 'begin'
-[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(16): Verilog 95 keyword 'begin' used in incorrect context
-[WARN (VERI-2050)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(17): extra semicolon is not allowed here in this dialect; use SystemVerilog mode instead
-[WARN (VERI-2050)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(18): extra semicolon is not allowed here in this dialect; use SystemVerilog mode instead
-[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(19): syntax error near 'i'
-[WARN (VERI-2050)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(19): extra semicolon is not allowed here in this dialect; use SystemVerilog mode instead
-[WARN (VERI-1867)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(20): fixed width part select is not allowed in Verilog 95 mode
-[WARN (VERI-1867)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): fixed width part select is not allowed in Verilog 95 mode
-[WARN (VERI-1867)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): fixed width part select is not allowed in Verilog 95 mode
-[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): syntax error near '='
-[WARN (VERI-2050)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): extra semicolon is not allowed here in this dialect; use SystemVerilog mode instead
-[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(27): syntax error near '='
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(4): 'int' is an unknown type
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(5): 'int' is an unknown type
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(6): 'int' is an unknown type
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(10): 'logic' is an unknown type
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(10): 'logic' is not declared
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(11): 'logic' is an unknown type
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(11): 'logic' is not declared
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(12): 'logic' is an unknown type
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(12): 'logic' is not declared
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(13): 'logic' is an unknown type
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(13): 'logic' is not declared
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(20): 'addr' is not a constant
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(20): 'i' is not declared
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): 'addr' is not a constant
-[INFO (SYS-1004)] Too many errors. Further error messages will be suppressed.
+[WARN (VERI-1867)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): fixed width part select is not allowed in Verilog 95 mode
+[WARN (VERI-1867)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(24): fixed width part select is not allowed in Verilog 95 mode
+[WARN (VERI-1867)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(24): fixed width part select is not allowed in Verilog 95 mode
+[ERROR (VERI-1373)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(30): @* is not allowed in this dialect; use Verilog-2K mode instead
+[ERROR (VERI-1072)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): module 'addr_decoder' is ignored due to previous errors
 Summary of errors detected:
-	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(16): syntax error near 'begin'
-	[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(16): Verilog 95 keyword 'begin' used in incorrect context
-	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(19): syntax error near 'i'
-	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): syntax error near '='
-	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(27): syntax error near '='
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(4): 'int' is an unknown type
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(5): 'int' is an unknown type
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(6): 'int' is an unknown type
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(10): 'logic' is an unknown type
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(10): 'logic' is not declared
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(11): 'logic' is an unknown type
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(11): 'logic' is not declared
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(12): 'logic' is an unknown type
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(12): 'logic' is not declared
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(13): 'logic' is an unknown type
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(13): 'logic' is not declared
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(20): 'addr' is not a constant
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(20): 'i' is not declared
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): 'addr' is not a constant
-ERROR (ENL034): 19 errors detected in the design file(s).
+	[ERROR (VERI-1373)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(30): @* is not allowed in this dialect; use Verilog-2K mode instead
+	[ERROR (VERI-1072)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): module 'addr_decoder' is ignored due to previous errors
+ERROR (ENL034): 2 errors detected in the design file(s).
 
 
-INFO (IPL005): Received request to exit from the console.
-INFO (IPL014): Waiting for the Tcl-thread to exit.
-INFO (IPL018): The peak resident set memory use for this session was 0.523 GB.
-INFO (IPL015): The Tcl-thread exited with status 0.
-INFO (IPL016): Exiting the analysis session with status 0.

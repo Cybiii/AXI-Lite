@@ -1,62 +1,60 @@
-2026-02-21 04:48:48.040950 (643352) main____ INFO    ----------------------------------------
-2026-02-21 04:48:48.040987 (643352) main____ INFO    Jasper version info
-2026-02-21 04:48:48.040992 (643352) main____ INFO      tool      : Jasper 2024.12
-2026-02-21 04:48:48.040997 (643352) main____ INFO      version   : 2024.12p002 64 bits
-2026-02-21 04:48:48.041000 (643352) main____ INFO      build date: 2025.02.26 14:36:14 UTC
-2026-02-21 04:48:48.041003 (643352) main____ INFO    ----------------------------------------
-2026-02-21 04:48:48.041006 (643352) main____ INFO    Runtime info:
-2026-02-21 04:48:48.041009 (643352) main____ INFO      platform  : Linux 4.18.0-553.104.1.el8_10.x86_64 x86_64
-2026-02-21 04:48:48.041014 (643352) main____ INFO      hostname  : eda-1.EECS.Berkeley.EDU
-2026-02-21 04:48:48.041018 (643352) main____ INFO      pid       : 643352
-2026-02-21 04:48:48.041021 (643352) main____ INFO      arguments : '-style' 'windows'
-2026-02-21 04:48:48.041025 (643352) main____ INFO      locale    : UTF-8
-2026-02-21 04:48:48.041028 (643352) main____ INFO    ----------------------------------------
-2026-02-21 04:48:48.041030 (643352) main____ INFO    System resource limits info:
-2026-02-21 04:48:48.041034 (643352) main____ INFO      virtual memory: unlimited
-2026-02-21 04:48:48.041038 (643352) main____ INFO      cpu time      : unlimited
-2026-02-21 04:48:48.041044 (643352) main____ INFO      processes     : 3092625
-2026-02-21 04:48:48.041050 (643352) main____ INFO      stack size    : 8388608 B
-2026-02-21 04:48:48.041054 (643352) main____ INFO      core file size: 0 B
-2026-02-21 04:48:48.041058 (643352) main____ INFO      open files    : 1024
-2026-02-21 04:48:48.041061 (643352) main____ INFO      file size     : unlimited
-2026-02-21 04:48:48.041064 (643352) main____ INFO    ----------------------------------------
-2026-02-21 04:48:48.041066 (643352) main____ INFO    Memory statistics:
-2026-02-21 04:48:48.041070 (643352) main____ INFO      total physical memory  : 791772984 kB
-2026-02-21 04:48:48.041073 (643352) main____ INFO      free physical memory   : 743415180 kB
-2026-02-21 04:48:48.041076 (643352) main____ INFO      committed address space: 39832192 kB
-2026-02-21 04:48:48.041079 (643352) main____ INFO    ----------------------------------------
-2026-02-21 04:48:48.041431 (643352) main____ INFO    Important environment variables:
-2026-02-21 04:48:48.041440 (643352) main____ INFO      CDS_LIC_FILE       : '5280@license-srv.eecs.berkeley.edu'
-2026-02-21 04:48:48.041444 (643352) main____ INFO      DISPLAY            : ':64.0'
-2026-02-21 04:48:48.041447 (643352) main____ INFO      JASPER_CPU_CHECK   : '1'
-2026-02-21 04:48:48.041450 (643352) main____ INFO      JASPER_INSTALL_DIR : '/share/instsww/cadence/jasper'
-2026-02-21 04:48:48.041453 (643352) main____ INFO      JASPER_KERNEL_CHECK: '1'
-2026-02-21 04:48:48.041456 (643352) main____ INFO      JASPER_OS_CHECK    : '1'
-2026-02-21 04:48:48.041459 (643352) main____ INFO      JASPER_PLATFORM    : 'Linux64'
-2026-02-21 04:48:48.041462 (643352) main____ INFO      LANG               : 'en_US.UTF-8'
-2026-02-21 04:48:48.041465 (643352) main____ INFO      LM_LICENSE_FILE    : '5280@license-srv.eecs.berkeley.edu:2100@license-srv.eecs.berkeley.edu:1717@license-srv.eecs.berkeley.edu'
-2026-02-21 04:48:48.041468 (643352) main____ INFO    ----------------------------------------
-2026-02-21 04:48:48.041519 (643352) lic_core INFO    Initializing license system ...
-2026-02-21 04:48:48.091303 (643371) lic_core INFO    [04:48:48.091107] Configured Lic search path (24.01-s003): 5280@license-srv.eecs.berkeley.edu:2100@license-srv.eecs.berkeley.edu:1717@license-srv.eecs.berkeley.edu
-2026-02-21 04:48:48.114416 (643352) lic_core INFO    ... license system initialized.
-2026-02-21 04:48:48.114706 (643352) lic__man INFO    Claim 'main' for <ui>.
-2026-02-21 04:48:48.114737 (643352) lic_core INFO    (1) checking out 'jasper_interactive' ...
-2026-02-21 04:48:48.146199 (643352) lic_core INFO    ... (1) checkout succeeded
-2026-02-21 04:48:48.146268 (643352) lic__man INFO    Claim 'fpv' for <ui>.
-2026-02-21 04:48:48.146292 (643352) lic_core INFO    (2) checking out 'jasper_fpv' ...
-2026-02-21 04:48:48.156266 (643352) lic_core INFO    ... (2) checkout failed (error: -5) ("FLEXnet ERROR(-5, 0, 0): No such feature exists.")
-2026-02-21 04:48:48.156298 (643352) lic_core INFO    (3) checking out 'jasper_fao' ...
-2026-02-21 04:48:48.179294 (643352) lic_core INFO    ... (3) checkout succeeded
-2026-02-21 04:48:48.180099 (643352) main____ INFO    Tool inactivity delay is 480000 ms.
-2026-02-21 04:48:48.539462 (643352) lic__man INFO    Claim 'fpv' for <ui>.
-2026-02-21 04:48:48.661337 (643352) lic__man INFO    Unclaim 'fpv' for <ui>.
-2026-02-21 04:48:48.661369 (643352) lic__man INFO    Claim 'fpv' for <ui>.
-2026-02-21 04:48:48.664656 (643352) session_ INFO    Starting analysis session with session id 'session_0' (launcher: <local>) ...
-2026-02-21 04:48:48.667447 (643352) session_ INFO    Analysis session with session id 'session_0' started (pid: 643395)
-2026-02-21 04:48:49.422908 (643352) session_ INFO    Analysis session 'session_0' connected to the console (host: 127.0.0.1:37444)
-2026-02-21 04:49:47.873846 (643371) lic_core INFO    [04:49:47.349370] Periodic Lic check successful
-2026-02-21 04:49:47.873903 (643371) lic_core INFO      [04:49:47.873688] Feature usage summary:
-2026-02-21 04:49:47.873912 (643371) lic_core INFO      [04:49:47.873689] jasper_interactive
-2026-02-21 04:49:47.873919 (643371) lic_core INFO      [04:49:47.873690] jasper_fao
-2026-02-21 04:57:53.871507 (643352) lic__man INFO    Entering idle state.
-2026-02-22 06:19:46.502581 (643352) lic__man INFO    Leaving idle state.
+2026-02-22 06:23:27.824991 (4168559) main____ INFO    ----------------------------------------
+2026-02-22 06:23:27.825029 (4168559) main____ INFO    Jasper version info
+2026-02-22 06:23:27.825035 (4168559) main____ INFO      tool      : Jasper 2024.12
+2026-02-22 06:23:27.825041 (4168559) main____ INFO      version   : 2024.12p002 64 bits
+2026-02-22 06:23:27.825045 (4168559) main____ INFO      build date: 2025.02.26 14:36:14 UTC
+2026-02-22 06:23:27.825048 (4168559) main____ INFO    ----------------------------------------
+2026-02-22 06:23:27.825052 (4168559) main____ INFO    Runtime info:
+2026-02-22 06:23:27.825055 (4168559) main____ INFO      platform  : Linux 4.18.0-553.104.1.el8_10.x86_64 x86_64
+2026-02-22 06:23:27.825061 (4168559) main____ INFO      hostname  : eda-1.EECS.Berkeley.EDU
+2026-02-22 06:23:27.825066 (4168559) main____ INFO      pid       : 4168559
+2026-02-22 06:23:27.825069 (4168559) main____ INFO      arguments : '-style' 'windows'
+2026-02-22 06:23:27.825074 (4168559) main____ INFO      locale    : UTF-8
+2026-02-22 06:23:27.825077 (4168559) main____ INFO    ----------------------------------------
+2026-02-22 06:23:27.825080 (4168559) main____ INFO    System resource limits info:
+2026-02-22 06:23:27.825084 (4168559) main____ INFO      virtual memory: unlimited
+2026-02-22 06:23:27.825088 (4168559) main____ INFO      cpu time      : unlimited
+2026-02-22 06:23:27.825094 (4168559) main____ INFO      processes     : 3092625
+2026-02-22 06:23:27.825102 (4168559) main____ INFO      stack size    : 8388608 B
+2026-02-22 06:23:27.825107 (4168559) main____ INFO      core file size: 0 B
+2026-02-22 06:23:27.825111 (4168559) main____ INFO      open files    : 1024
+2026-02-22 06:23:27.825115 (4168559) main____ INFO      file size     : unlimited
+2026-02-22 06:23:27.825118 (4168559) main____ INFO    ----------------------------------------
+2026-02-22 06:23:27.825121 (4168559) main____ INFO    Memory statistics:
+2026-02-22 06:23:27.825125 (4168559) main____ INFO      total physical memory  : 791772984 kB
+2026-02-22 06:23:27.825129 (4168559) main____ INFO      free physical memory   : 470424100 kB
+2026-02-22 06:23:27.825133 (4168559) main____ INFO      committed address space: 85433316 kB
+2026-02-22 06:23:27.825136 (4168559) main____ INFO    ----------------------------------------
+2026-02-22 06:23:27.825500 (4168559) main____ INFO    Important environment variables:
+2026-02-22 06:23:27.825511 (4168559) main____ INFO      CDS_LIC_FILE       : '5280@license-srv.eecs.berkeley.edu'
+2026-02-22 06:23:27.825515 (4168559) main____ INFO      DISPLAY            : ':64.0'
+2026-02-22 06:23:27.825519 (4168559) main____ INFO      JASPER_CPU_CHECK   : '1'
+2026-02-22 06:23:27.825523 (4168559) main____ INFO      JASPER_INSTALL_DIR : '/share/instsww/cadence/jasper'
+2026-02-22 06:23:27.825526 (4168559) main____ INFO      JASPER_KERNEL_CHECK: '1'
+2026-02-22 06:23:27.825530 (4168559) main____ INFO      JASPER_OS_CHECK    : '1'
+2026-02-22 06:23:27.825533 (4168559) main____ INFO      JASPER_PLATFORM    : 'Linux64'
+2026-02-22 06:23:27.825537 (4168559) main____ INFO      LANG               : 'en_US.UTF-8'
+2026-02-22 06:23:27.825541 (4168559) main____ INFO      LM_LICENSE_FILE    : '5280@license-srv.eecs.berkeley.edu:2100@license-srv.eecs.berkeley.edu:1717@license-srv.eecs.berkeley.edu'
+2026-02-22 06:23:27.825544 (4168559) main____ INFO    ----------------------------------------
+2026-02-22 06:23:27.825596 (4168559) lic_core INFO    Initializing license system ...
+2026-02-22 06:23:27.828992 (4168680) lic_core INFO    [06:23:27.091043] Configured Lic search path (24.01-s003): 5280@license-srv.eecs.berkeley.edu:2100@license-srv.eecs.berkeley.edu:1717@license-srv.eecs.berkeley.edu
+2026-02-22 06:23:27.866487 (4168559) lic_core INFO    ... license system initialized.
+2026-02-22 06:23:27.866791 (4168559) lic__man INFO    Claim 'main' for <ui>.
+2026-02-22 06:23:27.866829 (4168559) lic_core INFO    (1) checking out 'jasper_interactive' ...
+2026-02-22 06:23:27.895142 (4168559) lic_core INFO    ... (1) checkout succeeded
+2026-02-22 06:23:27.895219 (4168559) lic__man INFO    Claim 'fpv' for <ui>.
+2026-02-22 06:23:27.895263 (4168559) lic_core INFO    (2) checking out 'jasper_fpv' ...
+2026-02-22 06:23:27.906105 (4168559) lic_core INFO    ... (2) checkout failed (error: -5) ("FLEXnet ERROR(-5, 0, 0): No such feature exists.")
+2026-02-22 06:23:27.906147 (4168559) lic_core INFO    (3) checking out 'jasper_fao' ...
+2026-02-22 06:23:27.931683 (4168559) lic_core INFO    ... (3) checkout succeeded
+2026-02-22 06:23:27.932503 (4168559) main____ INFO    Tool inactivity delay is 480000 ms.
+2026-02-22 06:23:28.272127 (4168559) lic__man INFO    Claim 'fpv' for <ui>.
+2026-02-22 06:23:28.384203 (4168559) lic__man INFO    Unclaim 'fpv' for <ui>.
+2026-02-22 06:23:28.384245 (4168559) lic__man INFO    Claim 'fpv' for <ui>.
+2026-02-22 06:23:28.387407 (4168559) session_ INFO    Starting analysis session with session id 'session_0' (launcher: <local>) ...
+2026-02-22 06:23:28.390375 (4168559) session_ INFO    Analysis session with session id 'session_0' started (pid: 4168721)
+2026-02-22 06:23:29.125952 (4168559) session_ INFO    Analysis session 'session_0' connected to the console (host: 127.0.0.1:41214)
+2026-02-22 06:24:27.873245 (4168680) lic_core INFO    [06:24:27.348754] Periodic Lic check successful
+2026-02-22 06:24:27.873318 (4168680) lic_core INFO      [06:24:27.873096] Feature usage summary:
+2026-02-22 06:24:27.873330 (4168680) lic_core INFO      [06:24:27.873097] jasper_interactive
+2026-02-22 06:24:27.873341 (4168680) lic_core INFO      [06:24:27.873098] jasper_fao
