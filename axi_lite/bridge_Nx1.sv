@@ -1,5 +1,5 @@
 // N masters, 1 slave. Round-robin arbitration when multiple masters contend.
-// N = number of masters (N×M convention)
+// N = number of masters (N×M convention). Written with constant indices for JasperGold Analyze RTL (N=4).
 module bridge_Nx1 #(
     parameter int N = 4,
     parameter int ADDR_WIDTH = 32,
@@ -58,74 +58,141 @@ module bridge_Nx1 #(
         .handshake_complete(ar_handshake)
     );
 
-    // Request = master has valid, and we're not busy with another transaction
+    // Request = master has valid, and we're not busy (constant index only)
     always_comb begin
-        for (int i = 0; i < N; i++) begin
-            aw_req[i] = m_axi[i].aw_valid && !write_busy;
-            ar_req[i] = m_axi[i].ar_valid && !read_busy;
-        end
+        aw_req[0] = m_axi[0].aw_valid && !write_busy;
+        aw_req[1] = m_axi[1].aw_valid && !write_busy;
+        aw_req[2] = m_axi[2].aw_valid && !write_busy;
+        aw_req[3] = m_axi[3].aw_valid && !write_busy;
+        ar_req[0] = m_axi[0].ar_valid && !read_busy;
+        ar_req[1] = m_axi[1].ar_valid && !read_busy;
+        ar_req[2] = m_axi[2].ar_valid && !read_busy;
+        ar_req[3] = m_axi[3].ar_valid && !read_busy;
     end
 
     // Grant to index (one-hot to binary)
     always_comb begin
-        aw_master_idx = '0;
-        ar_master_idx = '0;
-        for (int i = 0; i < N; i++) begin
-            if (aw_grant[i]) aw_master_idx = i[MASTER_ID_W-1:0];
-            if (ar_grant[i]) ar_master_idx = i[MASTER_ID_W-1:0];
-        end
+        aw_master_idx = 0;
+        ar_master_idx = 0;
+        if (aw_grant[0]) aw_master_idx = 0;
+        else if (aw_grant[1]) aw_master_idx = 1;
+        else if (aw_grant[2]) aw_master_idx = 2;
+        else if (aw_grant[3]) aw_master_idx = 3;
+        if (ar_grant[0]) ar_master_idx = 0;
+        else if (ar_grant[1]) ar_master_idx = 1;
+        else if (ar_grant[2]) ar_master_idx = 2;
+        else if (ar_grant[3]) ar_master_idx = 3;
     end
 
-    // Handshake complete when valid & ready
     assign aw_handshake = s_axi.aw_valid && s_axi.aw_ready;
     assign ar_handshake = s_axi.ar_valid && s_axi.ar_ready;
 
-    // Latch which master won when address handshake completes (for W/B and R routing)
+    // Latch which master won when address handshake completes
     always_ff @(posedge s_axi.clk or negedge s_axi.rst_n) begin
         if (!s_axi.rst_n) begin
-            write_master_sel <= '0;
-            read_master_sel  <= '0;
+            write_master_sel <= 0;
+            read_master_sel  <= 0;
         end else begin
             if (aw_handshake) write_master_sel <= aw_master_idx;
             if (ar_handshake) read_master_sel  <= ar_master_idx;
         end
     end
 
-    // Request routing: granted master -> slave
+    // Request routing: granted master -> slave (constant-index mux)
     always_comb begin
-        s_axi.aw_addr  = m_axi[aw_master_idx].aw_addr;
-        s_axi.aw_valid = |aw_grant ? m_axi[aw_master_idx].aw_valid : 1'b0;
+        if (aw_master_idx == 0) begin
+            s_axi.aw_addr  = m_axi[0].aw_addr;
+            s_axi.aw_valid = |aw_grant ? m_axi[0].aw_valid : 1'b0;
+        end else if (aw_master_idx == 1) begin
+            s_axi.aw_addr  = m_axi[1].aw_addr;
+            s_axi.aw_valid = |aw_grant ? m_axi[1].aw_valid : 1'b0;
+        end else if (aw_master_idx == 2) begin
+            s_axi.aw_addr  = m_axi[2].aw_addr;
+            s_axi.aw_valid = |aw_grant ? m_axi[2].aw_valid : 1'b0;
+        end else begin
+            s_axi.aw_addr  = m_axi[3].aw_addr;
+            s_axi.aw_valid = |aw_grant ? m_axi[3].aw_valid : 1'b0;
+        end
 
-        s_axi.w_data   = m_axi[write_master_sel].w_data;
-        s_axi.w_strb   = m_axi[write_master_sel].w_strb;
-        s_axi.w_valid  = m_axi[write_master_sel].w_valid;
+        if (write_master_sel == 0) begin
+            s_axi.w_data  = m_axi[0].w_data;
+            s_axi.w_strb  = m_axi[0].w_strb;
+            s_axi.w_valid = m_axi[0].w_valid;
+        end else if (write_master_sel == 1) begin
+            s_axi.w_data  = m_axi[1].w_data;
+            s_axi.w_strb  = m_axi[1].w_strb;
+            s_axi.w_valid = m_axi[1].w_valid;
+        end else if (write_master_sel == 2) begin
+            s_axi.w_data  = m_axi[2].w_data;
+            s_axi.w_strb  = m_axi[2].w_strb;
+            s_axi.w_valid = m_axi[2].w_valid;
+        end else begin
+            s_axi.w_data  = m_axi[3].w_data;
+            s_axi.w_strb  = m_axi[3].w_strb;
+            s_axi.w_valid = m_axi[3].w_valid;
+        end
 
-        s_axi.ar_addr  = m_axi[ar_master_idx].ar_addr;
-        s_axi.ar_valid = |ar_grant ? m_axi[ar_master_idx].ar_valid : 1'b0;
-    end
-
-    // Slave's ready goes back to granted master only
-    always_comb begin
-        for (int i = 0; i < N; i++) begin
-            m_axi[i].aw_ready = (i == aw_master_idx && aw_grant[i]) ? s_axi.aw_ready : 1'b0;
-            m_axi[i].w_ready  = (i == write_master_sel) ? s_axi.w_ready : 1'b0;
-            m_axi[i].ar_ready = (i == ar_master_idx && ar_grant[i]) ? s_axi.ar_ready : 1'b0;
+        if (ar_master_idx == 0) begin
+            s_axi.ar_addr  = m_axi[0].ar_addr;
+            s_axi.ar_valid = |ar_grant ? m_axi[0].ar_valid : 1'b0;
+        end else if (ar_master_idx == 1) begin
+            s_axi.ar_addr  = m_axi[1].ar_addr;
+            s_axi.ar_valid = |ar_grant ? m_axi[1].ar_valid : 1'b0;
+        end else if (ar_master_idx == 2) begin
+            s_axi.ar_addr  = m_axi[2].ar_addr;
+            s_axi.ar_valid = |ar_grant ? m_axi[2].ar_valid : 1'b0;
+        end else begin
+            s_axi.ar_addr  = m_axi[3].ar_addr;
+            s_axi.ar_valid = |ar_grant ? m_axi[3].ar_valid : 1'b0;
         end
     end
 
-    // Response routing: slave -> granted master
+    // Slave's ready -> granted master only (constant index)
     always_comb begin
-        for (int i = 0; i < N; i++) begin
-            m_axi[i].b_resp  = (i == write_master_sel) ? s_axi.b_resp  : '0;
-            m_axi[i].b_valid = (i == write_master_sel) ? s_axi.b_valid : 1'b0;
-            m_axi[i].r_data  = (i == read_master_sel)  ? s_axi.r_data  : '0;
-            m_axi[i].r_resp  = (i == read_master_sel)  ? s_axi.r_resp  : '0;
-            m_axi[i].r_valid = (i == read_master_sel)  ? s_axi.r_valid : 1'b0;
-        end
+        m_axi[0].aw_ready = (aw_master_idx == 0 && aw_grant[0]) ? s_axi.aw_ready : 1'b0;
+        m_axi[0].w_ready  = (write_master_sel == 0) ? s_axi.w_ready : 1'b0;
+        m_axi[0].ar_ready = (ar_master_idx == 0 && ar_grant[0]) ? s_axi.ar_ready : 1'b0;
+        m_axi[1].aw_ready = (aw_master_idx == 1 && aw_grant[1]) ? s_axi.aw_ready : 1'b0;
+        m_axi[1].w_ready  = (write_master_sel == 1) ? s_axi.w_ready : 1'b0;
+        m_axi[1].ar_ready = (ar_master_idx == 1 && ar_grant[1]) ? s_axi.ar_ready : 1'b0;
+        m_axi[2].aw_ready = (aw_master_idx == 2 && aw_grant[2]) ? s_axi.aw_ready : 1'b0;
+        m_axi[2].w_ready  = (write_master_sel == 2) ? s_axi.w_ready : 1'b0;
+        m_axi[2].ar_ready = (ar_master_idx == 2 && ar_grant[2]) ? s_axi.ar_ready : 1'b0;
+        m_axi[3].aw_ready = (aw_master_idx == 3 && aw_grant[3]) ? s_axi.aw_ready : 1'b0;
+        m_axi[3].w_ready  = (write_master_sel == 3) ? s_axi.w_ready : 1'b0;
+        m_axi[3].ar_ready = (ar_master_idx == 3 && ar_grant[3]) ? s_axi.ar_ready : 1'b0;
     end
 
-    // Master's b_ready and r_ready to slave
-    assign s_axi.b_ready = m_axi[write_master_sel].b_ready;
-    assign s_axi.r_ready = m_axi[read_master_sel].r_ready;
+    // Response routing: slave -> granted master (constant index)
+    always_comb begin
+        m_axi[0].b_resp  = (write_master_sel == 0) ? s_axi.b_resp  : 2'b00;
+        m_axi[0].b_valid = (write_master_sel == 0) ? s_axi.b_valid : 1'b0;
+        m_axi[0].r_data  = (read_master_sel == 0)  ? s_axi.r_data  : 32'b0;
+        m_axi[0].r_resp  = (read_master_sel == 0)  ? s_axi.r_resp  : 2'b00;
+        m_axi[0].r_valid = (read_master_sel == 0)  ? s_axi.r_valid : 1'b0;
+        m_axi[1].b_resp  = (write_master_sel == 1) ? s_axi.b_resp  : 2'b00;
+        m_axi[1].b_valid = (write_master_sel == 1) ? s_axi.b_valid : 1'b0;
+        m_axi[1].r_data  = (read_master_sel == 1)  ? s_axi.r_data  : 32'b0;
+        m_axi[1].r_resp  = (read_master_sel == 1)  ? s_axi.r_resp  : 2'b00;
+        m_axi[1].r_valid = (read_master_sel == 1)  ? s_axi.r_valid : 1'b0;
+        m_axi[2].b_resp  = (write_master_sel == 2) ? s_axi.b_resp  : 2'b00;
+        m_axi[2].b_valid = (write_master_sel == 2) ? s_axi.b_valid : 1'b0;
+        m_axi[2].r_data  = (read_master_sel == 2)  ? s_axi.r_data  : 32'b0;
+        m_axi[2].r_resp  = (read_master_sel == 2)  ? s_axi.r_resp  : 2'b00;
+        m_axi[2].r_valid = (read_master_sel == 2)  ? s_axi.r_valid : 1'b0;
+        m_axi[3].b_resp  = (write_master_sel == 3) ? s_axi.b_resp  : 2'b00;
+        m_axi[3].b_valid = (write_master_sel == 3) ? s_axi.b_valid : 1'b0;
+        m_axi[3].r_data  = (read_master_sel == 3)  ? s_axi.r_data  : 32'b0;
+        m_axi[3].r_resp  = (read_master_sel == 3)  ? s_axi.r_resp  : 2'b00;
+        m_axi[3].r_valid = (read_master_sel == 3)  ? s_axi.r_valid : 1'b0;
+    end
+
+    // Master's b_ready and r_ready to slave (constant-index mux)
+    assign s_axi.b_ready = (write_master_sel == 0) ? m_axi[0].b_ready :
+                           (write_master_sel == 1) ? m_axi[1].b_ready :
+                           (write_master_sel == 2) ? m_axi[2].b_ready : m_axi[3].b_ready;
+    assign s_axi.r_ready = (read_master_sel == 0) ? m_axi[0].r_ready :
+                           (read_master_sel == 1) ? m_axi[1].r_ready :
+                           (read_master_sel == 2) ? m_axi[2].r_ready : m_axi[3].r_ready;
 
 endmodule

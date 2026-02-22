@@ -5,10 +5,10 @@
 # version   : 2024.12p002 64 bits
 # build date: 2025.02.26 14:36:14 UTC
 # ----------------------------------------
-# started   : 2026-02-22 06:23:28 PST
+# started   : 2026-02-22 06:27:37 PST
 # hostname  : eda-1.EECS.Berkeley.EDU.(none)
-# pid       : 4168721
-# arguments : '-label' 'session_0' '-console' '//127.0.0.1:43405' '-style' 'windows' '-data' 'AAAAXHicY2RgYLCp////PwMYMD6A0Aw2jAyoAMRnQhUJbEChGRhYUbUAAL9fBoQ=' '-proj' '/scratch/cs199-akc/NoC-experiments/jgproject/sessionLogs/session_0' '-init' '-hidden' '/scratch/cs199-akc/NoC-experiments/jgproject/.tmp/.initCmds.tcl'
+# pid       : 4177983
+# arguments : '-label' 'session_0' '-console' '//127.0.0.1:46103' '-style' 'windows' '-data' 'AAAAXHicY2RgYLCp////PwMYMD6A0Aw2jAyoAMRnQhUJbEChGRhYUbUAAL9fBoQ=' '-proj' '/scratch/cs199-akc/NoC-experiments/jgproject/sessionLogs/session_0' '-init' '-hidden' '/scratch/cs199-akc/NoC-experiments/jgproject/.tmp/.initCmds.tcl'
 
 Any disclosure about the Cadence Design Systems software or its use
 model to any third party violates the written Non-Disclosure Agreement
@@ -49,46 +49,75 @@ INFO: successfully checked out licenses "jasper_interactive" and "jasper_fao".
 INFO: reading configuration file "/home/aa/users/cs199-akc/.config/cadence/jasper.conf".
 % analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1xM.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/fifo.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv} ; analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/rr_arbiter.sv} ; 
 [-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv'
-[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): syntax error near 'for'
-[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): Verilog 95 keyword 'for' used in incorrect context
-[WARN (VERI-2050)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): extra semicolon is not allowed here in this dialect; use SystemVerilog mode instead
-[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(28): syntax error near 'integer'
-[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(28): Verilog 95 keyword 'integer' used in incorrect context
-[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(19): 'genvar' is an unknown type
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): 'g' is not a constant
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): 'g' is not a constant
-[ERROR (VERI-1952)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): range must be bounded by constant expressions
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): 'g' is not a constant
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): 'g' is not a constant
-[ERROR (VERI-1952)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): range must be bounded by constant expressions
-[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(24): 'g' is not a constant
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(33): 'i' is not declared
-[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(34): 'i' is not declared
-[ERROR (VERI-1072)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(41): module 'addr_decoder' is ignored due to previous errors
+[-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv'
+[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv(2): 'master' is an unknown type
+[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv(3): 'slave' is an unknown type
+[ERROR (VERI-1072)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv(32): module 'bridge_1x1' is ignored due to previous errors
 Summary of errors detected:
-	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): syntax error near 'for'
-	[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(21): Verilog 95 keyword 'for' used in incorrect context
-	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(28): syntax error near 'integer'
-	[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(28): Verilog 95 keyword 'integer' used in incorrect context
-	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(19): 'genvar' is an unknown type
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): 'g' is not a constant
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): 'g' is not a constant
-	[ERROR (VERI-1952)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(22): range must be bounded by constant expressions
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): 'g' is not a constant
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): 'g' is not a constant
-	[ERROR (VERI-1952)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(23): range must be bounded by constant expressions
-	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(24): 'g' is not a constant
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(32): 'i' is not declared
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(33): 'i' is not declared
-	[ERROR (VERI-1128)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(34): 'i' is not declared
-	[ERROR (VERI-1072)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(41): module 'addr_decoder' is ignored due to previous errors
+	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv(2): 'master' is an unknown type
+	[ERROR (VERI-1556)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv(3): 'slave' is an unknown type
+	[ERROR (VERI-1072)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv(32): module 'bridge_1x1' is ignored due to previous errors
+ERROR (ENL034): 3 errors detected in the design file(s).
+
+
+% analyze -verilog {/scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv} ; 
+[-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv'
+[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv(2): syntax error near 'parameter'
+[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv(2): Verilog 95 keyword 'parameter' used in incorrect context
+Summary of errors detected:
+	[ERROR (VERI-1137)] /scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv(2): syntax error near 'parameter'
+	[ERROR (VERI-2344)] /scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv(2): Verilog 95 keyword 'parameter' used in incorrect context
+ERROR (ENL034): 2 errors detected in the design file(s).
+
+
+% analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv} ; analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv} ; analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1xM.sv} ; analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv} ; analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/fifo.sv} ; analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/interface.sv} ; analyze -sv {/scratch/cs199-akc/NoC-experiments/axi_lite/rr_arbiter.sv} ; 
+[-- (VERI-1482)] Analyzing Verilog file '/share/instsww/cadence/jasper/lib/verilog/packages/std/std.sv' into library 'std'
+[-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv'
+[WARN (VERI-1206)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(42): overwriting previous definition of module 'addr_decoder'
+[INFO (VERI-2142)] /scratch/cs199-akc/NoC-experiments/axi_lite/address_decoder.sv(42): previous definition of module 'addr_decoder' is here
+[-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1x1.sv'
+[-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_1xM.sv'
+[-- (VERI-1482)] Analyzing Verilog file '/scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv'
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(64): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(65): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(96): 'aw_master_idx' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(97): 'aw_master_idx' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(99): 'write_master_sel' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(100): 'write_master_sel' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(101): 'write_master_sel' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(103): 'ar_master_idx' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(104): 'ar_master_idx' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(110): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(111): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(112): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(119): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(120): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(121): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(122): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(123): 'i' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(128): 'write_master_sel' is not a constant
+[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(129): 'read_master_sel' is not a constant
+[INFO (SYS-1004)] Too many errors. Further error messages will be suppressed.
+Summary of errors detected:
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(64): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(65): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(96): 'aw_master_idx' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(97): 'aw_master_idx' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(99): 'write_master_sel' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(100): 'write_master_sel' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(101): 'write_master_sel' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(103): 'ar_master_idx' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(104): 'ar_master_idx' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(110): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(111): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(112): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(119): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(120): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(121): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(122): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(123): 'i' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(128): 'write_master_sel' is not a constant
+	[ERROR (VERI-1188)] /scratch/cs199-akc/NoC-experiments/axi_lite/bridge_Nx1.sv(129): 'read_master_sel' is not a constant
 ERROR (ENL034): 19 errors detected in the design file(s).
 
 
